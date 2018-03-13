@@ -9,7 +9,7 @@ band_to_paper = 28 ;
 
 band_to_body_tapering = 11 ; 
 
-body_taper = 5 ; //fake value ;
+total_body_height = 43.25 ;
 
 band_profile = [
     [0,0],
@@ -50,9 +50,9 @@ BodyOutline = [                     // X values = (measured diameter)/2, Y as di
     
  //-- HP plotter pen body
  
-module Body() {
+module adapter_body() {
     render(convexity=3)
-        rotate_extrude($fn=50)
+        rotate_extrude($fn=80)
             polygon(points=BodyOutline);
 }
 
