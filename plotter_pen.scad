@@ -1,3 +1,5 @@
+include <plotter_pen_adapters_common.scad>;
+
 module plotter_pen(height=44) {
 	
 	pen_diameter = 11.5;	   // diameter of the main body
@@ -39,12 +41,12 @@ module plotter_pen(height=44) {
 
     ];
 
-    rotate([180, 0, 0]){
-        translate([0, 0, -height])
-        rotate_extrude($fn=50)
+      rotate_extrude($fn=50)
         polygon(points=profile);
-    }
+   
 
 }
 
-plotter_pen(height=44);
+color ("white", 1) plotter_pen(height=44) ;
+
+color ("red", 0.3) adapter_body() ; 
