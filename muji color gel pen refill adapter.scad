@@ -1,4 +1,4 @@
-// Plotter pen adapter for Muji black 0.5 refills
+// Plotter pen adapter for Muji 0.5 color refills
 // 
 // Refactored by Julien Dorra
 // based on code by Sasha Kovar <sasha-thing@arcocene.org>
@@ -7,8 +7,8 @@
 
 include <plotter_pen_adapters_common.scad>;
 
-pen_top_diameter = 6; 
-pen_bottom_diameter = 3.75; 
+pen_top_diameter = 6.5; 
+pen_bottom_diameter = 3.75;
 
 height_where_pen_diameter_change = 14.88 ; // Measured from the tip (ie. paper)
 
