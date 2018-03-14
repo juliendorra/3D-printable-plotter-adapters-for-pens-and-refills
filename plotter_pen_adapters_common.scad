@@ -1,30 +1,6 @@
-// Measurements and routines common across adapters.
-
-band_full_thickness = 2;    // thickest point of the band
-band_edge_thickness = 0.6;  // thinnest point of the band
-band_full_diameter = 16.5;  // diameter at widest point of band
-band_edge_diameter = 15;    // diameter where band starts to angle in
-
-band_to_paper = 28 ;
-
-band_to_body_tapering = 11 ; 
+// Measurements and modules common across adapters.
 
 total_body_height = 43.25 ;
-
-band_profile = [
-    [0,0],
-    [band_edge_diameter / 2, 0],
-    [band_full_diameter / 2, (band_full_thickness - band_edge_thickness) / 2],
-    [band_full_diameter / 2, band_full_thickness - ((band_full_thickness - band_edge_thickness) / 2)],
-    [band_edge_diameter / 2, band_full_thickness],
-    [0,band_full_thickness],
-];
-
-module band() {
-    rotate_extrude($fn=80) polygon(points=band_profile);
-}
-
-
 
 //-- Original HP plotter pen, which now serves as a body for the actual pen
  
@@ -47,8 +23,7 @@ BodyOutline = [                     // X values = (measured diameter)/2, Y as di
     ];
     
     
-    
- //-- HP plotter pen body
+// HP plotter pen adapter body
  
 module adapter_body() {
     render(convexity=3)
@@ -56,4 +31,38 @@ module adapter_body() {
             polygon(points=BodyOutline);
 }
 
-    
+// -- defaults values for a Staedtler Pigment Liner Pen
+
+pen_top_diameter = 8.35 ; 
+pen_bottom_diameter = 4.80 ; 
+
+height_where_pen_diameter_change = 12.20 ; // Measured from the tip (ie. paper)
+
+bottom_cut_off_height = height_where_pen_diameter_change - 3 ; 
+
+top_cut_off_height = total_body_height - 11.25 ; // must be bigger than total_body_height - 12
+
+// Substracting space for the pen from the HP plotter adapter body
+  
+module adapter_minus_pen() {
+    difference() {
+        
+         color ("white") adapter_body () ;
+        
+         color ("red") translate([0,0,height_where_pen_diameter_change])     
+                    cylinder(r=pen_top_diameter/2, 
+                             h= 100 , 
+                             $fn=80);
+            
+         color ("blue") cylinder(r=pen_bottom_diameter/2, 
+                             h=height_where_pen_diameter_change, 
+                             $fn=80);
+          
+        translate ([0, 0, bottom_cut_off_height/2]) 
+            cube ([20, 20, bottom_cut_off_height], center=true) ;
+        
+        translate ([0, 0, 50/2 + top_cut_off_height]) 
+            cube ([20, 20, 50], center=true) ;
+    }
+
+}
