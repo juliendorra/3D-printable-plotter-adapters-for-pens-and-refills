@@ -1,8 +1,14 @@
+// Refactored by Julien Dorra
+// based on code by Sasha Kovar <sasha-thing@arcocene.org>
+// from a design by Brian Boucheron <brian@boucheron.org>
+// and on code and measurements by Ed Nisley KE4ZNU April 2015
+
 // Measurements and modules common across adapters.
 
 total_body_height = 43.25 ;
 
-//-- Original HP plotter pen, which now serves as a body for the actual pen
+// Original HP plotter short pen, 
+// serves as a body for the actual pen to slide in
  
 BodyOutline = [                     // X values = (measured diameter)/2, Y as distance from tip
     [0.0,0.0],                      //  0 fiber pen tip
@@ -31,10 +37,13 @@ module adapter_body() {
             polygon(points=BodyOutline);
 }
 
-// -- defaults values for a Staedtler Pigment Liner Pen
+// Defaults values 
+// for a Staedtler pigment liner pen
 
 pen_top_diameter = 8.35 ; 
 pen_bottom_diameter = 4.80 ; 
+
+diameter_spacing = 0.3 ; // increase = easier to slide the pen. If you set it to 0 it will be very hard to get the pen in.
 
 height_where_pen_diameter_change = 12.20 ; // Measured from the tip (ie. paper)
 
@@ -42,7 +51,9 @@ bottom_cut_off_height = height_where_pen_diameter_change - 3 ;
 
 top_cut_off_height = total_body_height - 11.25 ; // must be bigger than total_body_height - 12
 
-// Substracting space for the pen from the HP plotter adapter body
+// This module substract a simplified pen volume 
+// composed of 2 cylinders
+// from the HP plotter adapter body.
   
 module adapter_minus_pen() {
     difference() {
@@ -50,13 +61,13 @@ module adapter_minus_pen() {
          color ("white") adapter_body () ;
         
          color ("red") translate([0,0,height_where_pen_diameter_change])     
-                    cylinder(r=pen_top_diameter/2, 
+                    cylinder(r= (pen_top_diameter+diameter_spacing)/2, 
                              h= 100 , 
-                             $fn=80);
+                             $fn= 80);
             
-         color ("blue") cylinder(r=pen_bottom_diameter/2, 
-                             h=height_where_pen_diameter_change, 
-                             $fn=80);
+         color ("blue") cylinder(r=(pen_bottom_diameter+diameter_spacing)/2, 
+                                 h=height_where_pen_diameter_change, 
+                                 $fn=80);
           
         translate ([0, 0, bottom_cut_off_height/2]) 
             cube ([20, 20, bottom_cut_off_height], center=true) ;

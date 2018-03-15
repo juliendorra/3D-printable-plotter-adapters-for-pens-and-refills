@@ -1,14 +1,12 @@
-// Plotter pen adapter for Staedtler Pigment Liner 
-// 
-// Refactored by Julien Dorra
-// based on code by Sasha Kovar <sasha-thing@arcocene.org>
-// from a design by Brian Boucheron <brian@boucheron.org>
-// and code and measurements by Ed Nisley KE4ZNU April 2015
+// Staedtler pigment liner
+// Plotter pen adapter 
 
 include <plotter_pen_adapters_common.scad>;
-
+ 
 pen_top_diameter = 8.35 ; 
 pen_bottom_diameter = 4.80 ; 
+
+diameter_spacing = 0.3 ; // increase = easier to slide the pen. If you set it to 0 it will be very hard to get the pen in.
 
 height_where_pen_diameter_change = 12.20 ; // Measured from the tip (ie. paper)
 
