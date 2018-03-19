@@ -1,10 +1,10 @@
 # 3D printable plotter adapters for pens and refills
 
-Use your favorite contemporary pens with vintage HP plotters: parametric OpenSCAD code to create custom adapters.
+Use your favorite contemporary pens with vintage HP plotters with this parametric OpenSCAD code to create custom adapters.
 
 These adapters allow you to use pens or even directly refills with vintage HP plotters like the HP 7440A, HP 7550A, HP 7475A… and other vintage plotters using the same standard for pens.
 
-This version was created to be quick and simple: **3 measures using a caliper, and in 5 minutes you are be ready to print a new adapter** (printing itself will take maximum 20 minutes, depending on your settings and printer).
+This version was created to be quick and simple: **3 measures using a caliper, and in 5 minutes you are ready to print a new adapter** (printing itself will take maximum 20 minutes, depending on your settings and printer).
 
 The goal was to be able to create an adapter for any random pen laying around or newly bought without thinking to much about it, trying and see what works best.
 
@@ -51,7 +51,7 @@ It differs and merge them in the following ways:
 
 - the whole plotter HP pen model from Ed Nisley is used as a base. 
 - then we substracts two cylinders. They are used as empty space for the target pen.
-- The bottom cylinder is meant to be smaller than the top one, as most pen narrows before the tips.
+- The bottom cylinder is meant to be smaller than the top one, as most pens narrow before the tips.
 -  The height where the pen diameter change is used as a parametric stop-point, set so the tip of the pen exactly touch the paper. 
 
 It's also inspired by these other projects:
