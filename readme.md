@@ -1,6 +1,6 @@
 # 3D printable plotter adapters for pens and refills
 
-Use your favorite contemporary pens with vintage HP plotters with this parametric OpenSCAD code to create custom adapters.
+Use your favorite contemporary pens on vintage HP plotters with this parametric OpenSCAD code to create custom adapters.
 
 These adapters allow you to use pens or even directly refills with vintage HP plotters like the HP 7440A, HP 7550A, HP 7475A… and other vintage plotters using the same standard for pens.
 
