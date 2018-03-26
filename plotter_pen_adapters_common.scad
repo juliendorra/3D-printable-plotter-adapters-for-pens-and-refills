@@ -27,14 +27,39 @@ BodyOutline = [                     // X values = (measured diameter)/2, Y as di
     [11.5/2,43.25],                 // 16 upper body
     [0.0,43.25]                     // 17 lid over reservoir
     ];
+
+// Simplified HP plotter short pen, with a basic cylinder as the bottom body part
+// Useful when the botton part of the adapter must be long
+// Downside: will not fit in a carrousel or other plotter rack
     
-    
+BodyOutlineSimplified = [                     // X values = (measured diameter)/2, Y as distance from tip
+    [0.0,0.0],                      //  0 start, equivalent to the tip
+    [11.5/2,0.0],                  //  1 enlarging at the size of lower body
+  
+    [11.5/2,28.0],                  // 10 lower body
+    [13.2/2,28.0],[16.6/2,28.5],    // 11 lower flange = 0.5
+    [16.6/2,29.5],[13.2/2,30.0],    // 13 flange rim = 1.0
+    [11.5/2,30.0],                  // 15 upper flange = 0.5
+    [11.5/2,43.25],                 // 16 upper body
+    [0.0,43.25]                     // 17 lid over reservoir
+    ];
+      
+  
 // HP plotter pen adapter body
  
 module adapter_body() {
+    
+    if (simplified_body_shape==false) {
     render(convexity=3)
         rotate_extrude($fn=80)
             polygon(points=BodyOutline);
+    }
+    
+    else {
+        render(convexity=3)
+        rotate_extrude($fn=80)
+            polygon(points=BodyOutlineSimplified);
+    }
 }
 
 // Defaults values 
@@ -47,27 +72,30 @@ diameter_spacing = 0.3 ; // increase = easier to slide the pen. If you set it to
 
 height_where_pen_diameter_change = 12.20 ; // Measured from the tip (ie. paper)
 
-bottom_cut_off_height = height_where_pen_diameter_change - 3 ; 
+bottom_cut_off_height = height_where_pen_diameter_change - 3 ;
 
 top_cut_off_height = total_body_height - 11.25 ; // must be bigger than total_body_height - 12
+
+simplified_body_shape=false ;
 
 // This module substract a simplified pen volume 
 // composed of 2 cylinders
 // from the HP plotter adapter body.
   
 module adapter_minus_pen() {
+    
     difference() {
         
-         color ("white") adapter_body () ;
-        
-         color ("red") translate([0,0,height_where_pen_diameter_change])     
+        color ("white") adapter_body () ;
+
+        color ("red") translate([0,0,height_where_pen_diameter_change])     
                     cylinder(r= (pen_top_diameter+diameter_spacing)/2, 
                              h= 100 , 
                              $fn= 80);
             
          color ("blue") cylinder(r=(pen_bottom_diameter+diameter_spacing)/2, 
                                  h=height_where_pen_diameter_change, 
-                                 $fn=80);
+                                 $fn=80);        
           
         translate ([0, 0, bottom_cut_off_height/2]) 
             cube ([20, 20, bottom_cut_off_height], center=true) ;
@@ -77,3 +105,4 @@ module adapter_minus_pen() {
     }
 
 }
+

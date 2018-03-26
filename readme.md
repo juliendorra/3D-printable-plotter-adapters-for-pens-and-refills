@@ -32,6 +32,10 @@ Optionnally, you can also adjust :
 
 - `top_cut_off_height` It can reasonably be adjusted between `total_body_height - 11.5` and `total_body_height - 0` (Full height of the top body. Longer printing time). If you cut below `total_body_height - 11.5` the grip might suffer (to be tested :-)
 
+- `simplified_body_shape` By default, the generator uses a realistic body shape for the adapter outer body, similar to the original HP pens. Add `simplified_body_shape = true ;` to your adapter code to use a simplified cylindrical lower body.  
+You will need to use the simplified lower body if the `height_where_pen_diameter_change` value for your stop point is very low, very close to the paper as with the Edding calligraphy pens. In this case the realistic body is not wide enough to allow for substracting the lower cylinder, cutting the adapter short.  
+The downside of using the simplified body is that the adapter will no longer fit in a pen plotter rack or carrousel.
+
 ## 3D Printing
 
 The printing shouldn't take more than 20 minutes, maybe less with a better printer that the low-cost (300€!) printer that was used to print the first adapters.
