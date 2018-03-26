@@ -20,7 +20,7 @@ You can also check the [#plottertwitter hashtag on Twitter](https://twitter.com/
 
 - Select a stop-point near the tip of your pen. It is frequently the cap limit, but sometimes it more practical to use another narrowing along the body of the pen.
 
-- Measure the maximum diameter of your pen above and below the chosen stop point, and add them to the `pen_top_diameter` (bigger) and `pen_bottom_diameter parameters` (smaller).
+- Measure the maximum diameter of your pen above and below the chosen stop point, and add them to the `pen_top_diameter` (bigger) and `pen_bottom_diameter` (smaller) parameters.
 
 - Measure the distance from the tip (ie. the paper) to the stop-point, and add that value to `height_where_pen_diameter_change`.
 
